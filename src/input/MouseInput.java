@@ -16,7 +16,7 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		gamePanel.setRect((float)e.getX(),(float) e.getY());
+		gamePanel.setMouseMoved(e.getX(), e.getY());
 	}
 
 	@Override
@@ -52,7 +52,8 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//gamePanel.setXY(e.getX(), e.getY());
+		//System.out.println("Ok!!");
+		//gamePanel.setMouseMoved(e.getX(), e.getY());
 	}
 
 }

@@ -5,6 +5,9 @@ import java.awt.event.KeyListener;
 
 import main.GamePanel;
 
+import static util.Constans.PlayerConstans.*;
+import static util.Constans.*;
+
 public class KeyboardInput implements KeyListener{
 	
 	GamePanel gamePanel;
@@ -22,26 +25,31 @@ public class KeyboardInput implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		gamePanel.setState(RUNNING);
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+		case KeyEvent.VK_W:
+			gamePanel.changeY(-SPEED_PLAYER);
+			break;
+		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_S:
+			gamePanel.changeY(SPEED_PLAYER);
+			break;
+		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
+			gamePanel.changeX(-SPEED_PLAYER);
+			break;
+		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
+			gamePanel.changeX(SPEED_PLAYER);
+			break;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		switch(e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			//gamePanel.changeY(-5);
-			break;
-		case KeyEvent.VK_S:
-			//gamePanel.changeY(5);
-			break;
-		case KeyEvent.VK_A:
-			//gamePanel.changeX(-5);
-			break;
-		case KeyEvent.VK_D:
-			//gamePanel.changeX(+5);
-			break;
-		}
+		gamePanel.setState(IDLE);
 	}
 
 }
