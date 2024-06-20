@@ -2,18 +2,33 @@ package main;
 
 import static util.Constans.*;
 
+import java.awt.Graphics;
+
+import entities.Player;
+import levels.LevelManager;
+
 public class GameRun implements Runnable{
 	
 	private GamePanel gamePanel;
 	
 	private GameWindow gameWindow;
 	
+	private Player player;
+	
+	private LevelManager levelManager;
+	
 	private Thread gameThread;
 	
 	public GameRun() {
-		gamePanel = new GamePanel();
+		
+		gamePanel = new GamePanel(this);
+		
+		player = new Player(0, 0, gamePanel);
 		
 		gameWindow = new GameWindow();
+		
+		initClass();
+		
 		gameWindow.add(gamePanel);
 		gameWindow.pack();
 		gameWindow.setVisible(true);
@@ -21,6 +36,30 @@ public class GameRun implements Runnable{
 		gamePanel.requestFocus();
 		
 		gameLoopStart();
+	}
+	
+	
+	
+	private void initClass() {
+		gamePanel = new GamePanel(this);
+		
+		gameWindow = new GameWindow();
+
+		player = new Player(0, 0, gamePanel);
+		
+		levelManager = new LevelManager(this);
+		
+	}
+
+
+
+	public void update() {
+		player.update();
+		levelManager.update();
+	}
+	public void render(Graphics g) {
+		levelManager.render(g);
+		player.render(g);
 	}
 	
 	private synchronized void gameLoopStart() {
@@ -58,6 +97,7 @@ public class GameRun implements Runnable{
 			lastTime = currentTime;
 			
 			if(updateDelta >= 1) {
+				update();
 				updateDelta--;
 				updatesCount++;
 			}
@@ -81,6 +121,10 @@ public class GameRun implements Runnable{
 			
 		}
 		
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 	
 }

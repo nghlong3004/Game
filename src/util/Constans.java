@@ -5,17 +5,29 @@ public class Constans {
 	public static final int FPS_SET = 120;
 	public static final int UPS_SET = 200;
 	
+	public static final int TILE_DEFAULT_SIZE = 32;
+	public static final float SCALE = 1.0f;
+	public static final int TILES_IN_WIDTH = 26;
+	public static final int TILES_IN_HEIGHT = 14;
+	public static final int TILES_SIZE = (int) SCALE * TILE_DEFAULT_SIZE;
+	public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+	
 	public static final int QUANTITY_ANIMATION = 9;
+	public static final int MAX_LEVEL_IMAGE = 48;
 	
-	public static final int SPEED_PLAYER = 5;
+	public static final float SPEED_PLAYER = 1f;
 	
-	public static final String IMAGE_FILE_PATH = "/player_sprites.png";
+	public static final String IMAGE_FILE_PATH_PLAYER = "/player_sprites.png";
+	public static final String IMAGE_FILE_PATH_LEVEL = "/outside_sprites.png";
+	public static final String IMAGE_FILE_PATH_LEVEL_ONE = "/level_one_data.png";
 	
 	public static final int IMAGE_PLAYER_WIDTH = 64;
 	public static final int IMAGE_PLAYER_HEIGHT = 40;
 	
-	public static final int PLAYER_WIDTH = 128;
-	public static final int PLAYER_HEIGHT = 80;
+	public static final int PLAYER_WIDTH = 64;
+	public static final int PLAYER_HEIGHT = 40;
+	
 	
 	
 	public static class PlayerConstans{
@@ -44,7 +56,7 @@ public class Constans {
 			case HIT:
 				break;
 			case ATTACK:
-				break;
+				return 3;
 			case ATTACK_JUMP:
 				break;
 			default:
