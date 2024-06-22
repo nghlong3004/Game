@@ -24,12 +24,12 @@ public class KeyboardInput implements KeyListener{
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			gamePanel.getGameRun().getPlayer().setUp(-1f);;
+			gamePanel.getGameRun().getPlayer().setJump(true);
 			break;
-		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_S:
-			gamePanel.getGameRun().getPlayer().setDown(1f);;
-			break;
+////		case KeyEvent.VK_DOWN:
+////		case KeyEvent.VK_S:
+////			gamePanel.getGameRun().getPlayer().setDown(1f);;
+////			break;
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
 			gamePanel.getGameRun().getPlayer().setLeft(-1f);;
@@ -46,12 +46,12 @@ public class KeyboardInput implements KeyListener{
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			gamePanel.getGameRun().getPlayer().setUp(0f);;
+			gamePanel.getGameRun().getPlayer().setJump(false);
 			break;
-		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_S:
-			gamePanel.getGameRun().getPlayer().setDown(0f);;
-			break;
+//		case KeyEvent.VK_DOWN:
+//		case KeyEvent.VK_S:
+//			gamePanel.getGameRun().getPlayer().setDown(0f);;
+//			break;
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
 			gamePanel.getGameRun().getPlayer().setLeft(0f);;

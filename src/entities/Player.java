@@ -3,11 +3,10 @@ package entities;
 import static util.Constans.*;
 import static util.Constans.PlayerConstans.*;
 import static util.LoadingImageSave.*;
+import static util.HelpMethod.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-import main.GamePanel;
 
 public class Player extends Entity{
 	
@@ -18,11 +17,23 @@ public class Player extends Entity{
 	private int nonFps = 0;
 	private int action = 0;
 	
-	private float up = 0f, down = 0f, left = 0f, right = 0f;
-	private boolean attacking = false;
+	private int [][] lvlData;
 	
-	public Player(float x, float y, GamePanel gamePanel) {
-		super(x, y, gamePanel);
+	private float left = 0f, right = 0f;
+	private float yDelta = 0f;
+	private float graviti = 0.04f * SCALE;
+	private float jumSpeed = -2.25f* SCALE;
+	private float fallSpeedAfterCollsion = 0.5f * SCALE;
+	
+	private float xDraw = 21 * SCALE;
+	private float yDraw = 4 * SCALE;
+	
+	private boolean inAir = false;
+	private boolean attacking = false;
+	private boolean jump = false;
+	
+	public Player(float x, float y, int width, int height) {
+		super(x, y, width, height);
 		importAnimations();
 	}
 	private void updateState() {
@@ -35,6 +46,14 @@ public class Player extends Entity{
 		}
 		else if(action == 2) {
 			playerAction = ATTACK;
+		}
+		else if(action == 3) {
+			if(yDelta < 0) {
+				playerAction = JUMP;
+			}
+			else {
+				playerAction = FALLING;
+			}
 		}
 		long oldTime = 0;
 		if(System.currentTimeMillis() - oldTime >= 1000) {
@@ -56,56 +75,88 @@ public class Player extends Entity{
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(getAnimation(),(int) x,(int) y, PLAYER_WIDTH, PLAYER_HEIGHT, null);
+		g.drawImage(getAnimation(),(int) (hitbox.x - xDraw),(int) (hitbox.y - yDraw), PLAYER_WIDTH, PLAYER_HEIGHT , null);
 	}
 	
 	private BufferedImage getAnimation() {
 		return animations[playerAction][implement];
 	}
 	public void updatePosition() {
-		double xDelta = (double) SPEED_PLAYER;
-		double yDelta = (double) SPEED_PLAYER;
-		if(left != 0) {
-			xDelta *=  left;
-			action = 1;
-		}
-		else {
-			xDelta *= right;
-			action = 1;
+		float xDelta = updateDelta((float) SPEED_PLAYER, this.left, this.right);
+		
+		if(jump) {
+			jump();
 		}
 		
-		this.x += xDelta;
-		
-		if(this.x <= 0) {
-			this.x = 0;
-		}
-		if(x + PLAYER_WIDTH >= gamePanel.getWidth()) {
-			x = gamePanel.getWidth() - PLAYER_WIDTH;
-		}
-		
-		if(up != 0) {
-			yDelta *= up;
-			action = 1;
-		}
-		else {
-			yDelta *= down;
-			action = 1;
-		}
-		this.y += yDelta;
-		
-		if(this.y <= 0) {
-			this.y = 0;
-		}
-		if(y + PLAYER_HEIGHT >= gamePanel.getHeight()) {
-			y = gamePanel.getHeight() - PLAYER_HEIGHT;
-		}
-		if(xDelta == 0 && yDelta == 0) {
+		if(xDelta == 0 && !inAir) {
 			action = 0;
+			return;
+		}
+		
+		if(!inAir) {
+			if(!IsEntityOnFloor(hitbox, lvlData)) {
+				inAir = true;
+			}
+		}
+		
+		if(inAir) {
+			if(CanMove(hitbox.x, hitbox.y + yDelta, hitbox.width, hitbox.height, lvlData)) {
+				hitbox.y += yDelta;
+				yDelta += graviti;
+			}
+			else {
+				hitbox.y = GetEnityYPosNextToWall(hitbox, yDelta);
+				if(yDelta > 0) {
+					resetInAir();
+				}
+				else {
+					 yDelta = fallSpeedAfterCollsion;
+				}
+			}
+		}
+		updateXSpos(xDelta);
+		
+	}
+	
+	private void jump() {
+		if(inAir) {
+			return;
+		}
+		inAir = true;
+		yDelta = jumSpeed;
+	}
+	private void resetInAir() {
+		inAir = false;
+		yDelta = 0;
+		
+	}
+	private void updateXSpos(float xDelta) {
+		if(CanMove(hitbox.x + xDelta, hitbox.y, hitbox.width, hitbox.height, lvlData)) {
+			hitbox.x += xDelta;
+		}
+		else {
+			hitbox.x = GetEnityXPosNextToWall(hitbox, xDelta);
 		}
 	}
+	
+	private float updateDelta(float Delta, float up, float down ) {
+		if(up != 0) {
+			Delta *= up;
+			action = 1;
+		}
+		else {
+			Delta *= down;
+			action = 1;
+		}
+		return Delta;
+	}
+	
 	public void updateAction() {
 		if(attacking) {
 			action = 2;
+		}
+		if(inAir) {
+			action = 3;
 		}
 	}
 	public void setState(int state) {
@@ -121,6 +172,11 @@ public class Player extends Entity{
 			}
 		}
 	}
+	
+	public void importLvlData(int[][] lvlData) {
+		this.lvlData = lvlData;
+	}
+	
 	public void setAnimations(BufferedImage[][] animations) {
 		this.animations = animations;
 	}
@@ -133,12 +189,6 @@ public class Player extends Entity{
 	public void setNonFps(int nonFps) {
 		this.nonFps = nonFps;
 	}
-	public void setUp(float up) {
-		this.up = up;
-	}
-	public void setDown(float down) {
-		this.down = down;
-	}
 	public void setLeft(float left) {
 		this.left = left;
 	}
@@ -148,6 +198,8 @@ public class Player extends Entity{
 	public void setAttacking(boolean attacking) {
 		this.attacking = attacking;
 	}
-	
+	public void setJump(boolean jump) {
+		this.jump = jump;
+	}
 	
 }

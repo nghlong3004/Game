@@ -1,5 +1,7 @@
 package main;
 
+import static util.Constans.*;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -19,7 +21,7 @@ public class GameWindow extends JFrame{
             e.printStackTrace();
         }
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(640, 400);
+		setSize(GAME_WIDTH, GAME_HEIGHT);
 		setLocationRelativeTo(null);
 	}
 	

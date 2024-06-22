@@ -1,16 +1,37 @@
 package entities;
 
-import main.GamePanel;
+import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Entity {
 	
 	protected float x;
 	protected float y;
-	protected GamePanel gamePanel;
 	
-	public Entity(float x, float y, GamePanel gamePanel) {
+	protected int width, height;
+	
+	protected Rectangle2D.Float hitbox;
+	
+	public Entity(float x, float y, int width, int height) {
 		this.x = x;
 		this.y = y;
-		this.gamePanel = gamePanel;
+		this.width = width;
+		this.height = height;
+		
+		initHitbox();
 	}
+	
+	protected void drawHitbox(Graphics g) {
+		
+		g.drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
+		
+	}
+	
+	private void initHitbox() {
+		hitbox = new Rectangle2D.Float(x, y,(float) width - 40,(float) height - 12);
+	}
+	public Rectangle2D.Float getHitbox() {
+		return this.hitbox;
+	}
+	
 }

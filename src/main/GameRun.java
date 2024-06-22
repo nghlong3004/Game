@@ -23,14 +23,13 @@ public class GameRun implements Runnable{
 		
 		gamePanel = new GamePanel(this);
 		
-		player = new Player(0, 0, gamePanel);
-		
 		gameWindow = new GameWindow();
 		
 		initClass();
 		
 		gameWindow.add(gamePanel);
 		gameWindow.pack();
+		gameWindow.setResizable(false);
 		gameWindow.setVisible(true);
 		
 		gamePanel.requestFocus();
@@ -45,9 +44,11 @@ public class GameRun implements Runnable{
 		
 		gameWindow = new GameWindow();
 
-		player = new Player(0, 0, gamePanel);
+		player = new Player(100, 200, PLAYER_WIDTH, PLAYER_HEIGHT);
 		
 		levelManager = new LevelManager(this);
+		
+		player.importLvlData(levelManager.getLevelOne().getLvlData());
 		
 	}
 

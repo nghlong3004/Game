@@ -6,10 +6,10 @@ public class Constans {
 	public static final int UPS_SET = 200;
 	
 	public static final int TILE_DEFAULT_SIZE = 32;
-	public static final float SCALE = 1.0f;
+	public static final float SCALE = 1f;
 	public static final int TILES_IN_WIDTH = 26;
 	public static final int TILES_IN_HEIGHT = 14;
-	public static final int TILES_SIZE = (int) SCALE * TILE_DEFAULT_SIZE;
+	public static final int TILES_SIZE = (int) (TILE_DEFAULT_SIZE * SCALE);
 	public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	
@@ -25,8 +25,8 @@ public class Constans {
 	public static final int IMAGE_PLAYER_WIDTH = 64;
 	public static final int IMAGE_PLAYER_HEIGHT = 40;
 	
-	public static final int PLAYER_WIDTH = 64;
-	public static final int PLAYER_HEIGHT = 40;
+	public static final int PLAYER_WIDTH = (int)(IMAGE_PLAYER_WIDTH * SCALE);
+	public static final int PLAYER_HEIGHT = (int)(IMAGE_PLAYER_HEIGHT * SCALE);
 	
 	
 	
@@ -48,9 +48,9 @@ public class Constans {
 			case IDLE:
 				return 5;
 			case JUMP:
-				break;
+				return 3;
 			case FALLING:
-				break;
+				return 1;
 			case GROUND:
 				break;
 			case HIT:

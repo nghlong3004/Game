@@ -6,11 +6,14 @@ public class LevelOne {
 	public LevelOne(int[][] lvlData) {
 		
 		this.lvlData = lvlData;
-		
 	}
 	
 	public int getIndex(int x, int y) {
 		return lvlData[y][x];
+	}
+	
+	public int[][] getLvlData(){
+		return this.lvlData;
 	}
 	
 }

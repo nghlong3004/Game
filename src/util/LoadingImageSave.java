@@ -30,7 +30,7 @@ public class LoadingImageSave {
 		return image;
 	}
 	public static int[][] GetlevelData(){
-		int [][] lvlData = new int[TILES_IN_HEIGHT][TILES_IN_WIDTH];
+		int [][] lvlData = new int[TILES_IN_HEIGHT + 1][TILES_IN_WIDTH + 1];
 		BufferedImage image = GetSpriteAtlas(IMAGE_FILE_PATH_LEVEL_ONE);
 		for(int i = 0; i < image.getHeight(); ++i) {
 			for(int j = 0; j < image.getWidth(); ++j) {

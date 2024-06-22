@@ -9,15 +9,12 @@ import java.awt.image.BufferedImage;
 import main.GameRun;
 
 public class LevelManager {
-
-	private GameRun gameRun;
 	
 	private LevelOne levelOne;
 	
 	private BufferedImage[] levelSprites;
 	
 	public LevelManager(GameRun gameRun) {
-		this.gameRun = gameRun;
 		levelOne = new LevelOne(GetlevelData());
 		importImages();
 	}
@@ -37,12 +34,16 @@ public class LevelManager {
 		for(int i = 0; i < TILES_IN_HEIGHT; ++i) {
 			for(int j = 0; j < TILES_IN_WIDTH; ++j) {
 				int index = levelOne.getIndex(j, i);
-				g.drawImage(levelSprites[index], TILES_SIZE * j, TILES_SIZE * i, null);
+				g.drawImage(levelSprites[index], TILES_SIZE * j, TILES_SIZE * i, TILES_SIZE, TILES_SIZE, null);
 			}
 		}
 	}
 	public void update() {
 		
+	}
+	
+	public LevelOne getLevelOne() {
+		return this.levelOne;
 	}
 	
 }
