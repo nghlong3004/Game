@@ -1,6 +1,6 @@
 package util;
 
-import static util.Constans.*;
+import static util.Constans.ImageCaptureConstants.*;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

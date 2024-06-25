@@ -1,11 +1,12 @@
 package main;
 
-import static util.Constans.*;
+import static util.Constans.FrameRateConstants.*;
 
 import java.awt.Graphics;
 
-import entities.Player;
-import levels.LevelManager;
+import gameStates.GameState;
+import gameStates.Menu;
+import gameStates.Playing;
 
 public class GameRun implements Runnable{
 	
@@ -13,19 +14,14 @@ public class GameRun implements Runnable{
 	
 	private GameWindow gameWindow;
 	
-	private Player player;
-	
-	private LevelManager levelManager;
-	
 	private Thread gameThread;
+	
+	private Menu menu;
+	private Playing playing;
 	
 	public GameRun() {
 		
-		gamePanel = new GamePanel(this);
-		
-		gameWindow = new GameWindow();
-		
-		initClass();
+		newImplement();
 		
 		gameWindow.add(gamePanel);
 		gameWindow.pack();
@@ -36,31 +32,48 @@ public class GameRun implements Runnable{
 		
 		gameLoopStart();
 	}
-	
-	
-	
-	private void initClass() {
+
+	private void newImplement() {
+		// TODO Auto-generated method stub
 		gamePanel = new GamePanel(this);
-		
+	
 		gameWindow = new GameWindow();
-
-		player = new Player(100, 200, PLAYER_WIDTH, PLAYER_HEIGHT);
 		
-		levelManager = new LevelManager(this);
+		menu = new Menu(this);
 		
-		player.importLvlData(levelManager.getLevelOne().getLvlData());
-		
+		playing = new Playing(this);
 	}
-
-
 
 	public void update() {
-		player.update();
-		levelManager.update();
+		switch(GameState.state) {
+		case MENU:
+			menu.update();
+			break;
+		case PLAYING:
+			playing.update();
+			break;
+		case OPTIONS:
+			break;
+		case QUIT:
+			System.exit(0);
+		default:
+			break;
+		
+		}
+		
 	}
 	public void render(Graphics g) {
-		levelManager.render(g);
-		player.render(g);
+		switch(GameState.state) {
+		case MENU:
+			menu.render(g);
+			break;
+		case PLAYING:
+			playing.render(g);
+			break;
+		default:
+			break;
+		
+		}
 	}
 	
 	private synchronized void gameLoopStart() {
@@ -123,9 +136,14 @@ public class GameRun implements Runnable{
 		}
 		
 	}
-	
-	public Player getPlayer() {
-		return this.player;
+
+	public Menu getMenu() {
+		return menu;
 	}
+
+	public Playing getPlaying() {
+		return playing;
+	}
+	
 	
 }

@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import gameStates.GameState;
 import main.GamePanel;
 
 public class MouseInput implements MouseListener, MouseMotionListener{
@@ -16,18 +17,49 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		switch(GameState.state) {
+		case MENU:
+			gamePanel.getGameRun().getMenu().mousClicked(e);
+			break;
+		case PLAYING:
+			gamePanel.getGameRun().getPlaying().mousClicked(e);
+			break;
+		default:
+			break;
+		
+		}
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		gamePanel.getGameRun().getPlayer().setAttacking(true);
+		switch(GameState.state) {
+		case MENU:
+			gamePanel.getGameRun().getMenu().mousePressed(e);
+			break;
+		case PLAYING:
+			gamePanel.getGameRun().getPlaying().mousePressed(e);
+			break;
+		default:
+			break;
+		
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		gamePanel.getGameRun().getPlayer().setAttacking(false);
+		switch(GameState.state) {
+		case MENU:
+			gamePanel.getGameRun().getMenu().mouseReleased(e);
+			break;
+		case PLAYING:
+			gamePanel.getGameRun().getPlaying().mouseReleased(e);
+			break;
+		default:
+			break;
+		
+		}
+		
 	}
 
 	@Override
@@ -50,9 +82,17 @@ public class MouseInput implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		//System.out.println("Ok!!");
-		//gamePanel.setMouseMoved(e.getX(), e.getY());
+		switch(GameState.state) {
+		case MENU:
+			gamePanel.getGameRun().getMenu().mouseMoved(e);
+			break;
+		case PLAYING:
+			gamePanel.getGameRun().getPlaying().mouseMoved(e);
+			break;
+		default:
+			break;
+		
+		}
 	}
 
 }

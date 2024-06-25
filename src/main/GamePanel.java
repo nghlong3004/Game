@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import input.KeyboardInput;
 import input.MouseInput;
 
-import static util.Constans.*;
+import static util.Constans.GameConstants.*;
 
 public class GamePanel extends JPanel{
 

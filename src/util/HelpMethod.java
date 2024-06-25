@@ -1,6 +1,6 @@
 package util;
 
-import static util.Constans.*;
+import static util.Constans.ImageCaptureConstants.*;
 
 import java.awt.geom.Rectangle2D;
 
@@ -33,7 +33,7 @@ public class HelpMethod {
 		float xIndex = x / TILES_SIZE;
 		float yIndex = y / TILES_SIZE;
 		int value = lvlData[in(yIndex) ][in(xIndex)];
-		if(value >= MAX_LEVEL_IMAGE || value <= 0 || value != 11) {
+		if(value >= MAX_LEVEL_IMAGE || value != 11 || value <= 0 || value >= 48) {
 			return false;
 		}
 		return true;
@@ -43,8 +43,8 @@ public class HelpMethod {
 		
 		if(x > 0) {
 			//right
-			int tileXPos = currentTile * TILES_SIZE;
-			int xOffSet = (int)(TILES_SIZE - hitbox.width);
+			float tileXPos = currentTile * TILES_SIZE;
+			float xOffSet = (TILES_SIZE - hitbox.width);
 			return tileXPos + xOffSet - 1;
 		}
 		else {
@@ -57,8 +57,8 @@ public class HelpMethod {
 		int currentTile = (int)(hitbox.y / TILES_SIZE);
 		if(y > 0) {
 			//right
-			int tileXPos = currentTile * TILES_SIZE;
-			int yOffSet = (int)(TILES_SIZE - hitbox.height);
+			float tileXPos = currentTile * TILES_SIZE;
+			float yOffSet = (TILES_SIZE - hitbox.height);
 			return tileXPos + yOffSet - 1;
 		}
 		else {
@@ -69,7 +69,7 @@ public class HelpMethod {
 	}
 	public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
 		if(IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData)) {
-			if(IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData)) {
+			if(IsSolid(hitbox.x + hitbox.width + 1, hitbox.y + hitbox.height + 1, lvlData)) {
 				return false;
 			}
 		}

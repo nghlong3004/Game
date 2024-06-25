@@ -1,7 +1,7 @@
 package levels;
 
 import static util.LoadingImageSave.*;
-import static util.Constans.*;
+import static util.Constans.ImageCaptureConstants.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

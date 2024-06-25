@@ -1,7 +1,7 @@
 package entities;
 
-import static util.Constans.*;
-import static util.Constans.PlayerConstans.*;
+import static util.Constans.ImageCaptureConstants.*;
+import static util.Constans.PlayerConstants.*;
 import static util.LoadingImageSave.*;
 import static util.HelpMethod.*;
 
@@ -75,7 +75,7 @@ public class Player extends Entity{
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(getAnimation(),(int) (hitbox.x - xDraw),(int) (hitbox.y - yDraw), PLAYER_WIDTH, PLAYER_HEIGHT , null);
+		g.drawImage(getAnimation(),(int) (hitbox.x - xDraw),(int) (hitbox.y - yDraw + 1), PLAYER_WIDTH, PLAYER_HEIGHT , null);
 	}
 	
 	private BufferedImage getAnimation() {
@@ -88,15 +88,14 @@ public class Player extends Entity{
 			jump();
 		}
 		
-		if(xDelta == 0 && !inAir) {
-			action = 0;
-			return;
-		}
-		
 		if(!inAir) {
 			if(!IsEntityOnFloor(hitbox, lvlData)) {
 				inAir = true;
 			}
+		}
+		if(xDelta == 0 && !inAir) {
+			action = 0;
+			return;
 		}
 		
 		if(inAir) {

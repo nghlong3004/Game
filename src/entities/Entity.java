@@ -1,5 +1,7 @@
 package entities;
 
+import static util.Constans.GameConstants.*;
+
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
@@ -28,7 +30,7 @@ public abstract class Entity {
 	}
 	
 	private void initHitbox() {
-		hitbox = new Rectangle2D.Float(x, y,(float) width - 40,(float) height - 12);
+		hitbox = new Rectangle2D.Float(x, y,(float) width - HITBOX_WIDTH_OFF_SET,(float) height - HITBOX_HEIGHT_OFF_SET);
 	}
 	public Rectangle2D.Float getHitbox() {
 		return this.hitbox;
