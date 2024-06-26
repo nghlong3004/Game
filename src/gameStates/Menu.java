@@ -1,7 +1,8 @@
 package gameStates;
 
-import static util.Constans.GameConstants.*;
-import static util.Constans.UI.*;
+import static util.Constants.GameConstants.*;
+import static util.Constants.UIConstants.Buttons.*;
+import static util.Constants.ImageCaptureConstants.*;
 import static util.LoadingImageSave.*;
 
 import java.awt.Graphics;
@@ -42,7 +43,7 @@ public class Menu extends State implements StateMethod{
 	private void loadMenuButtons() {
 		// TODO Auto-generated method stub
 		menuButtons[0] = new MenuButton(GAME_WIDTH / 2,(int)((BUTTON_WIDTH_DEFAULT) * SCALE) , 0, GameState.PLAYING);
-		menuButtons[1] = new MenuButton(GAME_WIDTH / 2,(int)((BUTTON_WIDTH_DEFAULT * 3 / 2) * SCALE) , 1, GameState.OPTIONS);
+		menuButtons[1] = new MenuButton(GAME_WIDTH / 2,(int)((BUTTON_WIDTH_DEFAULT * 3 / 2) * SCALE) , 1, GameState.OPTION);
 		menuButtons[2] = new MenuButton(GAME_WIDTH / 2,(int)((BUTTON_WIDTH_DEFAULT * 2) * SCALE) , 2, GameState.QUIT);
 	}
 
@@ -67,7 +68,6 @@ public class Menu extends State implements StateMethod{
 	@Override
 	public void mousClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		GameState.state = GameState.PLAYING;
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class Menu extends State implements StateMethod{
 
 	private void resetMenuButtons() {
 		for(MenuButton button: menuButtons) {
-			button.resetMouse();
+			button.reset();
 		}
 	}
 	

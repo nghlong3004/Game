@@ -1,7 +1,8 @@
 package levels;
 
 import static util.LoadingImageSave.*;
-import static util.Constans.ImageCaptureConstants.*;
+import static util.Constants.ImageCaptureConstants.*;
+import static util.Constants.GameConstants.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

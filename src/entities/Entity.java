@@ -1,6 +1,6 @@
 package entities;
 
-import static util.Constans.GameConstants.*;
+import static util.Constants.GameConstants.*;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;

@@ -1,6 +1,7 @@
 package ui;
 
-import static util.Constans.UI.*;
+import static util.Constants.UIConstants.Buttons.*;
+import static util.Constants.ImageCaptureConstants.*;
 import static util.LoadingImageSave.*;
 
 import java.awt.Graphics;
@@ -9,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 import gameStates.GameState;
 
-public class MenuButton {
+public class MenuButton implements OptionButton{
 	
 	private int xPos, yPos, rowIndex, index;
 	
@@ -36,22 +37,24 @@ public class MenuButton {
 		
 	}
 
-	private void initHitbox() {
+	public void initHitbox() {
 		hitbox = new Rectangle(xPos - xOffSetCenter, yPos, BUTTON_WIDTH, BUTTON_HEIGHT);
 		
 	}
-
-	private void loadImages() {
+	
+	@Override
+	public void loadImages() {
 		images = new BufferedImage[3];
 		BufferedImage image = GetSpriteAtlas(IMAGE_FILE_PATH_MENU);
 		for(int i = 0; i < images.length; ++i) {
 			images[i] = image.getSubimage(i * BUTTON_WIDTH_DEFAULT, rowIndex * BUTTON_HEIGHT_DEFAULT, BUTTON_WIDTH_DEFAULT, BUTTON_HEIGHT_DEFAULT);
 		}
 	}
-	
+	@Override
 	public void draw(Graphics g) {
 		g.drawImage(images[index], xPos - xOffSetCenter, yPos, BUTTON_WIDTH, BUTTON_HEIGHT, null);
 	}
+	@Override
 	public void update() {
 		index = 0;
 		if(mouseOver) {
@@ -62,7 +65,8 @@ public class MenuButton {
 		}
 		
 	}
-	public void resetMouse() {
+	@Override
+	public void reset() {
 		mouseOver = false;
 		mousePressed = false;
 	}

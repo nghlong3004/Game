@@ -1,6 +1,7 @@
 package util;
 
-import static util.Constans.ImageCaptureConstants.*;
+import static util.Constants.ImageCaptureConstants.*;
+import static util.Constants.GameConstants.*;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -41,5 +42,6 @@ public class LoadingImageSave {
 		}
 		return lvlData;
 	}
+
 
 }

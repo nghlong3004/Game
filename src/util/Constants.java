@@ -1,18 +1,22 @@
 package util;
 
-public class Constans {
+public class Constants {
 	
 	public static class FrameRateConstants{
 		public static final int FPS_SET = 120;
 		public static final int UPS_SET = 200;
 	}
 	
-	public static class ImageCaptureConstants extends GameConstants{
+	public static class ImageCaptureConstants{
 		public static final String IMAGE_FILE_PATH_PLAYER = "/player_sprites.png";
 		public static final String IMAGE_FILE_PATH_LEVEL = "/outside_sprites.png";
 		public static final String IMAGE_FILE_PATH_LEVEL_ONE = "/level_one_data.png";
 		public static final String IMAGE_FILE_PATH_MENU = "/button_atlas.png";
 		public static final String IMAGE_FILE_PATH_MENU_BACKGROUND = "/menu_background.png";
+		public static final String IMAGE_FILE_PATH_MENU_PAUSE = "/pause_menu.png";
+		public static final String IMAGE_FILE_PATH_MENU_SOUND = "/sound_button.png";
+		public static final String IMAGE_FILE_PATH_MENU_URM = "/urm_buttons.png";
+		public static final String IMAGE_FILE_PATH_MENU_VOLUME = "/volume_buttons.png";
 		
 		public static final int QUANTITY_ANIMATION = 9;
 		public static final int MAX_LEVEL_IMAGE = 48;
@@ -20,15 +24,35 @@ public class Constans {
 		public static final int IMAGE_PLAYER_WIDTH = 64;
 		public static final int IMAGE_PLAYER_HEIGHT = 40;
 		
-		public static final int PLAYER_WIDTH = (int)(IMAGE_PLAYER_WIDTH * SCALE);
-		public static final int PLAYER_HEIGHT = (int)(IMAGE_PLAYER_HEIGHT * SCALE);
+		public static final int PLAYER_WIDTH = (int)(IMAGE_PLAYER_WIDTH * GameConstants.SCALE);
+		public static final int PLAYER_HEIGHT = (int)(IMAGE_PLAYER_HEIGHT * GameConstants.SCALE);
 	}
 	
-	public static class UI extends ImageCaptureConstants{
-		public static final int BUTTON_WIDTH_DEFAULT = 140;
-		public static final int BUTTON_HEIGHT_DEFAULT = 56;
-		public static final int BUTTON_WIDTH = (int)( BUTTON_WIDTH_DEFAULT * SCALE );
-		public static final int BUTTON_HEIGHT = (int)( BUTTON_HEIGHT_DEFAULT * SCALE );
+	public static class UIConstants{
+		public static class Buttons{
+			public static final int BUTTON_WIDTH_DEFAULT = 140;
+			public static final int BUTTON_HEIGHT_DEFAULT = 56;
+			
+			public static final int BUTTON_WIDTH = (int)( BUTTON_WIDTH_DEFAULT * GameConstants.SCALE );
+			public static final int BUTTON_HEIGHT = (int)( BUTTON_HEIGHT_DEFAULT * GameConstants.SCALE );
+		}
+		public static class PauseButton{
+			public static final int SOUND_SIZE_DEFAULT = 42;
+			public static final int SOUND_SIZE = (int)(SOUND_SIZE_DEFAULT * GameConstants.SCALE);
+		}
+		public static class UrmButton{
+			public static final int URM_SIZE_DEFAULT = 56;
+			public static final int URM_SIZE = (int)(URM_SIZE_DEFAULT * GameConstants.SCALE);
+		}
+		public static class VolumeButton{
+			public static final int VOLUME_WIDTH_DEFAULT = 28;
+			public static final int VOLUME_HEIGHT_DEFAULT = 44;
+			public static final int SLIDER_DEFAULT = 215;
+			
+			public static final int VOLUME_WIDTH = (int)( VOLUME_WIDTH_DEFAULT * GameConstants.SCALE );
+			public static final int VOLUME_HEIGHT = (int)( VOLUME_HEIGHT_DEFAULT * GameConstants.SCALE );
+			public static final int SLIDER = (int)(SLIDER_DEFAULT * GameConstants.SCALE);
+		}
 	}
 	
 	public static class GameConstants{

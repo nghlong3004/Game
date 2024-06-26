@@ -1,7 +1,8 @@
 package entities;
 
-import static util.Constans.ImageCaptureConstants.*;
-import static util.Constans.PlayerConstants.*;
+import static util.Constants.ImageCaptureConstants.*;
+import static util.Constants.GameConstants.*;
+import static util.Constants.PlayerConstants.*;
 import static util.LoadingImageSave.*;
 import static util.HelpMethod.*;
 

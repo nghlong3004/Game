@@ -1,6 +1,7 @@
 package util;
 
-import static util.Constans.ImageCaptureConstants.*;
+import static util.Constants.ImageCaptureConstants.*;
+import static util.Constants.GameConstants.*;
 
 import java.awt.geom.Rectangle2D;
 

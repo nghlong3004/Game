@@ -1,6 +1,6 @@
 package main;
 
-import static util.Constans.GameConstants.*;
+import static util.Constants.GameConstants.*;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;

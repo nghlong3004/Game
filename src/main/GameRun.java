@@ -1,6 +1,6 @@
 package main;
 
-import static util.Constans.FrameRateConstants.*;
+import static util.Constants.FrameRateConstants.*;
 
 import java.awt.Graphics;
 
@@ -52,7 +52,7 @@ public class GameRun implements Runnable{
 		case PLAYING:
 			playing.update();
 			break;
-		case OPTIONS:
+		case OPTION:
 			break;
 		case QUIT:
 			System.exit(0);
@@ -122,7 +122,7 @@ public class GameRun implements Runnable{
 			}	
 			if(System.currentTimeMillis() - frameTime >= 1000) {
 				frameTime = System.currentTimeMillis();
-				System.out.println("FPS : " + framesCount + " | UPS : " + updatesCount);
+				//System.out.println("FPS : " + framesCount + " | UPS : " + updatesCount);
 				framesCount = 0;
 				updatesCount = 0;
 			}
