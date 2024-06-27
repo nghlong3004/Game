@@ -75,8 +75,8 @@ public class Player extends Entity{
 		updateState();
 	}
 	
-	public void render(Graphics g) {
-		g.drawImage(getAnimation(),(int) (hitbox.x - xDraw),(int) (hitbox.y - yDraw + 1), PLAYER_WIDTH, PLAYER_HEIGHT , null);
+	public void render(Graphics g, int xLvlOffset) {
+		g.drawImage(getAnimation(),(int) (hitbox.x - xDraw) - xLvlOffset,(int) (hitbox.y - yDraw + 1), PLAYER_WIDTH, PLAYER_HEIGHT , null);
 	}
 	
 	private BufferedImage getAnimation() {

@@ -1,7 +1,6 @@
 package util;
 
 import static util.Constants.ImageCaptureConstants.*;
-import static util.Constants.GameConstants.*;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -31,8 +30,8 @@ public class LoadingImageSave {
 		return image;
 	}
 	public static int[][] GetlevelData(){
-		int [][] lvlData = new int[TILES_IN_HEIGHT + 1][TILES_IN_WIDTH + 1];
 		BufferedImage image = GetSpriteAtlas(IMAGE_FILE_PATH_LEVEL_ONE);
+		int [][] lvlData = new int[image.getHeight() ][image.getWidth() ];
 		for(int i = 0; i < image.getHeight(); ++i) {
 			for(int j = 0; j < image.getWidth(); ++j) {
 				Color color = new Color(image.getRGB(j, i));

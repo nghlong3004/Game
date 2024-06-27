@@ -7,6 +7,7 @@ import static util.Constants.UIConstants.PauseButton.*;
 import static util.Constants.UIConstants.UrmButton.*;
 import static util.Constants.UIConstants.VolumeButton.*;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -90,6 +91,8 @@ public class Option {
 		volumeButton.update();
 	}
 	public void render(Graphics g) {
+		g.setColor(new Color(0, 0, 0, 100));
+		g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		g.drawImage(backgroundImage, bgX, bgY, bgW, bgH, null);
 		
 		musicButton.draw(g);

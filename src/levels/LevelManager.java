@@ -31,11 +31,11 @@ public class LevelManager {
 		}
 	}
 	
-	public void render(Graphics g) {
+	public void render(Graphics g, int xLvlOffset) {
 		for(int i = 0; i < TILES_IN_HEIGHT; ++i) {
-			for(int j = 0; j < TILES_IN_WIDTH; ++j) {
+			for(int j = 0; j < levelOne.getLvlData()[0].length; ++j) {
 				int index = levelOne.getIndex(j, i);
-				g.drawImage(levelSprites[index], TILES_SIZE * j, TILES_SIZE * i, TILES_SIZE, TILES_SIZE, null);
+				g.drawImage(levelSprites[index], TILES_SIZE * j - xLvlOffset, TILES_SIZE * i, TILES_SIZE, TILES_SIZE, null);
 			}
 		}
 	}

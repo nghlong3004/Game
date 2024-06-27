@@ -1,6 +1,7 @@
 package gameStates;
 
 import static util.Constants.ImageCaptureConstants.*;
+import static util.Constants.GameConstants.*;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -9,7 +10,9 @@ import java.awt.event.MouseEvent;
 import entities.Player;
 import levels.LevelManager;
 import main.GameRun;
+import ui.Background;
 import ui.Option;
+import util.LoadingImageSave;
 
 public class Playing extends State implements StateMethod{
 	
@@ -17,9 +20,18 @@ public class Playing extends State implements StateMethod{
 	
 	private LevelManager levelManager;
 	
+	private Background background;
+	
 	private Option option;
 	
 	private boolean pause = true;
+	
+	private int xLvlOffSet;
+	private int leftBorder = (int)(0.4 * GAME_WIDTH);
+	private int rightBorder = (int)(0.6 * GAME_WIDTH);
+	private int lvlTilesWide = LoadingImageSave.GetlevelData()[0].length;
+	private int maxTilesOffSet = lvlTilesWide - TILES_IN_WIDTH;
+	private int maxLvlOffset = maxTilesOffSet * TILES_SIZE;
 	
 	public Playing(GameRun game) {
 		super(game);
@@ -37,25 +49,48 @@ public class Playing extends State implements StateMethod{
 		
 		option = new Option(this);
 		
+		background = new Background();
+		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		if(pause) {
+			background.update(xLvlOffSet);
 			player.update();
 			levelManager.update();
+			checkCloseToBorder();
 		}
 		else {
 			option.update();
 		}
 	}
 
+	private void checkCloseToBorder() {
+		int playerX = (int)(player.getHitbox().x);
+		int diff = playerX - xLvlOffSet;
+		if(diff > rightBorder) {
+			xLvlOffSet += diff - rightBorder;
+		}
+		else if(diff < leftBorder) {
+			xLvlOffSet += diff - leftBorder;
+		}
+		if(xLvlOffSet > maxLvlOffset) {
+			xLvlOffSet = maxLvlOffset;
+		}
+		else if(xLvlOffSet < 0) {
+			xLvlOffSet = 0;
+		}
+		
+	}
+
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		player.render(g);
-		levelManager.render(g);
+		background.draw(g);
+		player.render(g, xLvlOffSet);
+		levelManager.render(g, xLvlOffSet);
 		if(!pause) {
 			option.render(g);
 		}

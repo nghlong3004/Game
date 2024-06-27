@@ -17,7 +17,7 @@ public class Menu extends State implements StateMethod{
 
 	private MenuButton[] menuButtons = new MenuButton[3];
 	
-	private BufferedImage menuBackground;
+	private BufferedImage menuBackground, backgroundMenu;
 	
 	private int xPos, yPos, width, height;
 	
@@ -38,6 +38,8 @@ public class Menu extends State implements StateMethod{
 		height = (int)(menuBackground.getHeight() * SCALE);
 		xPos = (GAME_WIDTH - width) >> 1;
 		yPos = (int)(45 * SCALE);
+		
+		backgroundMenu = GetSpriteAtlas(IMAGE_FILE_PATH_BACKGROUND_MENU);
 	}
 
 	private void loadMenuButtons() {
@@ -58,6 +60,7 @@ public class Menu extends State implements StateMethod{
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
+		g.drawImage(backgroundMenu, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 		g.drawImage(menuBackground, xPos, yPos, width, height, null);
 		for(MenuButton button: menuButtons) {
 			button.draw(g);

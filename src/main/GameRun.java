@@ -122,7 +122,7 @@ public class GameRun implements Runnable{
 			}	
 			if(System.currentTimeMillis() - frameTime >= 1000) {
 				frameTime = System.currentTimeMillis();
-				//System.out.println("FPS : " + framesCount + " | UPS : " + updatesCount);
+				System.out.println("FPS : " + framesCount + " | UPS : " + updatesCount);
 				framesCount = 0;
 				updatesCount = 0;
 			}

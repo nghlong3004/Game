@@ -4,19 +4,23 @@ public class Constants {
 	
 	public static class FrameRateConstants{
 		public static final int FPS_SET = 120;
-		public static final int UPS_SET = 200;
+		public static final int UPS_SET = 220;
 	}
 	
 	public static class ImageCaptureConstants{
 		public static final String IMAGE_FILE_PATH_PLAYER = "/player_sprites.png";
 		public static final String IMAGE_FILE_PATH_LEVEL = "/outside_sprites.png";
-		public static final String IMAGE_FILE_PATH_LEVEL_ONE = "/level_one_data.png";
+		public static final String IMAGE_FILE_PATH_LEVEL_ONE = "/level_one_data_long.png";
 		public static final String IMAGE_FILE_PATH_MENU = "/button_atlas.png";
 		public static final String IMAGE_FILE_PATH_MENU_BACKGROUND = "/menu_background.png";
 		public static final String IMAGE_FILE_PATH_MENU_PAUSE = "/pause_menu.png";
 		public static final String IMAGE_FILE_PATH_MENU_SOUND = "/sound_button.png";
 		public static final String IMAGE_FILE_PATH_MENU_URM = "/urm_buttons.png";
 		public static final String IMAGE_FILE_PATH_MENU_VOLUME = "/volume_buttons.png";
+		public static final String IMAGE_FILE_PATH_BACKGROUND_MENU = "/background_menu.png";
+		public static final String IMAGE_FILE_PATH_BACKGROUND_PLAYING = "/playing_bg_img.png";
+		public static final String IMAGE_FILE_PATH_BIG_CLOUD = "/big_clouds.png";
+		public static final String IMAGE_FILE_PATH_SMALL_CLOUD = "/small_clouds.png";
 		
 		public static final int QUANTITY_ANIMATION = 9;
 		public static final int MAX_LEVEL_IMAGE = 48;
@@ -52,6 +56,19 @@ public class Constants {
 			public static final int VOLUME_WIDTH = (int)( VOLUME_WIDTH_DEFAULT * GameConstants.SCALE );
 			public static final int VOLUME_HEIGHT = (int)( VOLUME_HEIGHT_DEFAULT * GameConstants.SCALE );
 			public static final int SLIDER = (int)(SLIDER_DEFAULT * GameConstants.SCALE);
+		}
+		public static class Cloud{
+			public static final int BIG_CLOUD_WIDTH_DEFAULT = 448;
+			public static final int BIG_CLOUD_HEIGHT_DEFAULT = 101;
+			public static final int BIG_CLOUD_WIDTH = (int)(BIG_CLOUD_WIDTH_DEFAULT * GameConstants.SCALE);
+			public static final int BIG_CLOUD_HEIGHT = (int)(BIG_CLOUD_HEIGHT_DEFAULT * GameConstants.SCALE);
+			
+			public static final int SMALL_CLOUD_WIDTH_DEFAULT = 74;
+			public static final int SMALL_CLOUD_HEIGHT_DEFAULT = 24;
+			public static final int SMALL_CLOUD_WIDTH = (int)(SMALL_CLOUD_WIDTH_DEFAULT * GameConstants.SCALE);
+			public static final int SMALL_CLOUD_HEIGHT = (int)(SMALL_CLOUD_HEIGHT_DEFAULT * GameConstants.SCALE);
+			
+			
 		}
 	}
 	
